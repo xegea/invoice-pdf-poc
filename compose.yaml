@@ -1,7 +1,8 @@
 services:
   invoices:
+    # Built by GitHub Actions (.github/workflows/ci.yml) and pulled from the registry.
+    image: ghcr.io/xegea/invoice-pdf-poc:${IMAGE_TAG:-latest}
     build: .
-    image: invoices-poc:latest
     restart: unless-stopped
     environment:
       MAX_CONCURRENT_PDF: "1"      # small VPS: render one PDF at a time
