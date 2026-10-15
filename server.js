@@ -16,11 +16,16 @@ app.get('/health', (_req, res) => res.json({ ok: true }));
 app.use(express.static(path.join(here, 'public')));
 app.use('/vendor/grapesjs', express.static(path.join(here, 'node_modules', 'grapesjs', 'dist')));
 
+// Sample XML for the editor preview and the field catalogue. SAMPLES_DIR wins;
+// otherwise the (git-ignored) samples/ folder, then the anonymised demo-samples/.
 const sampleXml = () => {
-  const dir = process.env.SAMPLES_DIR || path.join(here, 'samples');
-  const f = fs.readdirSync(dir).find((n) => n.endsWith('.xml'));
-  if (!f) throw new Error('No sample XML in /samples');
-  return fs.readFileSync(path.join(dir, f), 'utf8');
+  const candidates = [process.env.SAMPLES_DIR, path.join(here, 'samples'), path.join(here, 'demo-samples')].filter(Boolean);
+  for (const dir of candidates) {
+    if (!fs.existsSync(dir)) continue;
+    const f = fs.readdirSync(dir).find((n) => n.endsWith('.xml'));
+    if (f) return fs.readFileSync(path.join(dir, f), 'utf8');
+  }
+  throw new Error('No sample XML found (put one in samples/ or demo-samples/)');
 };
 
 // Accepts either a multipart upload (field "xml") or the raw XML as body
