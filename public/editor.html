@@ -15,7 +15,19 @@
     font:inherit; padding:6px 12px; border-radius:6px; border:1px solid #555; background:#2e2e2b; color:var(--fg); cursor:pointer; text-decoration:none;
   }
   .bar button.primary { background:var(--accent); border-color:var(--accent); color:#1d1d1b; font-weight:600; }
+  .bar button.danger { border-color:#7a2e2e; color:#ff9a90; }
+  .bar button.danger:hover { background:#3a1f1f; }
   .bar button:disabled { opacity:.5; cursor:wait; }
+  #confirm { position:fixed; inset:0; background:rgba(0,0,0,.65); display:none; align-items:center; justify-content:center; z-index:200; padding:16px; }
+  #confirm.open { display:flex; }
+  #confirm .box { background:#1d1d1b; color:var(--fg); border:1px solid #5a3030; border-radius:12px; max-width:440px; width:100%; padding:22px 24px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  #confirm h3 { margin:0 0 10px; font-size:16px; display:flex; gap:10px; align-items:center; color:#ff9a90; }
+  #confirm p { margin:0 0 8px; color:#d6d6cf; }
+  #confirm code { background:#2e2e2b; padding:1px 6px; border-radius:4px; color:var(--fg); }
+  #confirm .actions { display:flex; gap:10px; justify-content:flex-end; margin-top:18px; }
+  #confirm .actions button { font:inherit; padding:8px 14px; border-radius:8px; border:1px solid #555; background:#2e2e2b; color:var(--fg); cursor:pointer; }
+  #confirm .actions button.danger-solid { background:#c0392b; border-color:#c0392b; color:#fff; font-weight:600; }
+  #confirm .actions button:disabled { opacity:.5; cursor:wait; }
   .bar .spacer { flex:1; }
   #status { color:#bdbdb5; }
   #status.err { color:#ff8a80; }
@@ -36,11 +48,24 @@
   <button id="save" class="primary">Save</button>
   <button id="saveas">Save as…</button>
   <button id="preview">Preview PDF</button>
+  <button id="delete" class="danger">Delete</button>
   <span id="status">Loading…</span>
   <span class="spacer"></span>
   <a class="btn" href="/">← Generator</a>
 </div>
 <div id="gjs"></div>
+<div id="confirm" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="box">
+    <h3 id="confirmTitle">⚠ Delete template</h3>
+    <p>You are about to delete the template <code id="confirmName"></code>.</p>
+    <p>It will disappear from the template list and from the generator. Any unsaved changes in the editor will be lost.</p>
+    <p style="font-size:12px;color:#a9a9a2">The files are moved to <code>templates/.trash/</code>, so they can be recovered manually.</p>
+    <div class="actions">
+      <button id="confirmCancel" autofocus>Cancel</button>
+      <button id="confirmOk" class="danger-solid">Delete template</button>
+    </div>
+  </div>
+</div>
 <div id="modal"><button id="closeModal">Close</button><iframe id="pdf" title="PDF preview"></iframe></div>
 
 <script src="/vendor/grapesjs/grapes.min.js"></script>
@@ -150,6 +175,32 @@ $('preview').addEventListener('click', async () => {
   } catch (e) { status(e.message, true); }
   finally { $('preview').disabled = false; }
 });
+function askDelete(id) {
+  return new Promise((resolve) => {
+    $('confirmName').textContent = id;
+    $('confirm').classList.add('open');
+    $('confirmCancel').focus();
+    const done = (v) => { $('confirm').classList.remove('open'); $('confirmOk').onclick = $('confirmCancel').onclick = null; document.onkeydown = null; resolve(v); };
+    $('confirmOk').onclick = () => done(true);
+    $('confirmCancel').onclick = () => done(false);
+    document.onkeydown = (e) => { if (e.key === 'Escape') done(false); };
+  });
+}
+
+$('delete').addEventListener('click', async () => {
+  const id = currentId;
+  if (!(await askDelete(id))) return;
+  $('delete').disabled = true;
+  try {
+    status(`Deleting “${id}”…`);
+    const r = await api(`/api/templates/${encodeURIComponent(id)}`, { method: 'DELETE' });
+    const { templates } = await r.json();
+    await load(templates[0]);
+    status(`Deleted “${id}” · now editing “${templates[0]}”`);
+  } catch (e) { status(e.message, true); }
+  finally { $('delete').disabled = false; }
+});
+
 $('closeModal').addEventListener('click', () => $('modal').classList.remove('open'));
 
 load(currentId).catch((e) => status(e.message, true));

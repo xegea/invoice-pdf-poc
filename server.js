@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import fs from 'node:fs';
 import { generateInvoice, inspectInvoice, viewModelFor } from './src/generateInvoice.js';
-import { listTemplates, readTemplate, writeTemplate, documentFrom, fromEditorHtml, ensurePageRule, fieldCatalog } from './src/templates.js';
+import { listTemplates, readTemplate, writeTemplate, trashTemplate, documentFrom, fromEditorHtml, ensurePageRule, fieldCatalog } from './src/templates.js';
 import { invalidateTemplate } from './src/renderPdf.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -81,6 +81,14 @@ app.put('/api/templates/:id', json, (req, res) => {
     writeTemplate(req.params.id, { html, css });
     invalidateTemplate(req.params.id);
     res.json({ ok: true, id: req.params.id });
+  } catch (e) { fail(res, e); }
+});
+
+app.delete('/api/templates/:id', (req, res) => {
+  try {
+    const movedTo = trashTemplate(req.params.id);
+    invalidateTemplate(req.params.id);
+    res.json({ ok: true, movedTo, templates: listTemplates() });
   } catch (e) { fail(res, e); }
 });
 

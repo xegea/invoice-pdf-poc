@@ -120,3 +120,18 @@ export function fieldCatalog(vm) {
   for (const [k, v] of Object.entries(vm)) if (v && typeof v === 'object' && !Array.isArray(v)) walk(v, k, k);
   return groups;
 }
+
+// Deleting moves the folder to templates/.trash/ instead of removing it, so a
+// mistaken delete can be undone by moving it back.
+export function trashTemplate(id) {
+  if (!isValidId(id)) throw Object.assign(new Error('Invalid template id'), { status: 400 });
+  const ids = listTemplates();
+  if (!ids.includes(id)) throw Object.assign(new Error(`Unknown template: ${id}`), { status: 404 });
+  if (ids.length <= 1) throw Object.assign(new Error('Cannot delete the only template'), { status: 409 });
+  const trash = path.join(TEMPLATES_DIR, '.trash');
+  fs.mkdirSync(trash, { recursive: true });
+  const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const target = path.join(trash, `${id}-${stamp}`);
+  fs.renameSync(path.join(TEMPLATES_DIR, id), target);
+  return path.relative(path.join(TEMPLATES_DIR, '..'), target);
+}
