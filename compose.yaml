@@ -1,0 +1,19 @@
+services:
+  invoices:
+    build: .
+    image: invoices-poc:latest
+    restart: unless-stopped
+    environment:
+      MAX_CONCURRENT_PDF: "1"      # small VPS: render one PDF at a time
+    ports:
+      - "127.0.0.1:3200:3000"      # only the host's Caddy talks to it
+    volumes:
+      - templates:/app/templates   # templates saved from the editor survive redeploys
+    mem_limit: 400m
+    memswap_limit: 1g
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+volumes:
+  templates:

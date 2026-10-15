@@ -1,0 +1,14 @@
+<div class="block">
+  <h2>{{lecturas.titulo}}</h2>
+  <table class="lect">
+    <thead>
+      <tr><th></th><th colspan="2"><em>{{lecturas.tActiva}}</em></th><th colspan="2"><em>{{lecturas.tReactiva}}</em></th><th><em>{{lecturas.tMax}}</em><br>{{lecturas.fechaMax}}</th></tr>
+      <tr class="dates"><th></th><th>{{lecturas.fechaAct}}</th><th>{{lecturas.fechaAnt}}</th><th>{{lecturas.fechaAct}}</th><th>{{lecturas.fechaAnt}}</th><th></th></tr>
+    </thead>
+    <tbody>
+      {{#each lecturas.filas}}
+      <tr><td class="p">{{periodo}}</td><td>{{act}}</td><td>{{ant}}</td><td>{{reactAct}}</td><td>{{reactAnt}}</td><td class="r">{{max}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

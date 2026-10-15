@@ -1,0 +1,8 @@
+/* Only used inside the editor canvas: makes raw-HTML placeholders visible. */
+.hbs-raw {
+  min-height: 12mm; display: flex; align-items: center; justify-content: center;
+  border: 1px dashed #c0392b; color: #c0392b; font: 11px/1.2 ui-monospace, monospace;
+  background: rgba(192, 57, 43, .06);
+}
+.hbs-raw::before { content: "{{{ "; }
+.hbs-raw::after { content: " }}}"; }

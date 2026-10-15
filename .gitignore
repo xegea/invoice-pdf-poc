@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+# real customer data used while developing: never commit
+samples/
+out*.pdf
+out*.html
+# editor backups
+templates/*/.history/
+.claude/settings.local.json
+.env

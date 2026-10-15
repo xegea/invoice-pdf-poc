@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template Editor</title>
+<link rel="stylesheet" href="/vendor/grapesjs/css/grapes.min.css">
+<style>
+  :root { --bar:#1d1d1b; --fg:#f2f2ee; --accent:#e8ac1f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:13px/1.4 system-ui, sans-serif; background:#2b2b28; }
+  .bar { height:52px; display:flex; align-items:center; gap:10px; padding:0 14px; background:var(--bar); color:var(--fg); }
+  .bar strong { margin-right:8px; }
+  .bar select, .bar button, .bar a.btn {
+    font:inherit; padding:6px 12px; border-radius:6px; border:1px solid #555; background:#2e2e2b; color:var(--fg); cursor:pointer; text-decoration:none;
+  }
+  .bar button.primary { background:var(--accent); border-color:var(--accent); color:#1d1d1b; font-weight:600; }
+  .bar button:disabled { opacity:.5; cursor:wait; }
+  .bar .spacer { flex:1; }
+  #status { color:#bdbdb5; }
+  #status.err { color:#ff8a80; }
+  #gjs { height:calc(100vh - 52px); }
+  .gjs-editor-cont { height:100%; }
+  .gjs-block { min-height:auto; padding:8px; font-size:11px; }
+  .gjs-block__media { display:none; }
+  #modal { position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; z-index:100; padding:24px; }
+  #modal.open { display:flex; flex-direction:column; gap:8px; }
+  #modal iframe { flex:1; background:#fff; border:0; border-radius:8px; }
+  #modal button { align-self:flex-end; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <strong>Template Editor</strong>
+  <label>Template <select id="tpl"></select></label>
+  <button id="save" class="primary">Save</button>
+  <button id="saveas">Save as…</button>
+  <button id="preview">Preview PDF</button>
+  <span id="status">Loading…</span>
+  <span class="spacer"></span>
+  <a class="btn" href="/">← Generator</a>
+</div>
+<div id="gjs"></div>
+<div id="modal"><button id="closeModal">Close</button><iframe id="pdf" title="PDF preview"></iframe></div>
+
+<script src="/vendor/grapesjs/grapes.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const status = (msg, err) => { $('status').textContent = msg; $('status').className = err ? 'err' : ''; };
+let editor = null;
+let currentId = new URLSearchParams(location.search).get('template') || 'invoice';
+
+async function api(url, opts) {
+  const r = await fetch(url, opts);
+  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || `HTTP ${r.status}`);
+  return r;
+}
+
+async function loadTemplateList(selected) {
+  const ids = await (await api('/api/templates')).json();
+  $('tpl').innerHTML = ids.map((i) => `<option ${i === selected ? 'selected' : ''}>${i}</option>`).join('');
+}
+
+function addBlocks(fields) {
+  const bm = editor.Blocks;
+  bm.add('text', { label: 'Text', category: 'Basic', content: { type: 'text', content: 'Text' } });
+  bm.add('heading', { label: 'Section title', category: 'Basic', content: '<h2>Title</h2>' });
+  bm.add('box', { label: 'Box', category: 'Basic', content: '<div style="min-height:12mm;padding:2mm"></div>' });
+  bm.add('image', { label: 'Image', category: 'Basic', content: { type: 'image' }, activate: true });
+  bm.add('rule', { label: 'Line', category: 'Basic', content: '<hr style="border:0;border-top:0.3mm solid #222;margin:2mm 0">' });
+  for (const [group, entries] of Object.entries(fields)) {
+    for (const f of entries) {
+      bm.add(`f:${group}:${f.path}`, {
+        label: f.raw ? `{{{${f.path}}}}` : `{{${f.path}}}${f.sample ? ` <i style="opacity:.6">${f.sample}</i>` : ''}`,
+        category: `Field · ${group}`,
+        content: f.raw
+          ? `<div class="hbs-raw" data-hbs-raw="${f.path}">${f.path}</div>`
+          : { type: 'text', content: `{{${f.path}}}` },
+      });
+    }
+  }
+}
+
+async function load(id) {
+  status('Loading…');
+  const [tpl, fields] = await Promise.all([
+    api(`/api/templates/${encodeURIComponent(id)}`).then((r) => r.json()),
+    api('/api/fields').then((r) => r.json()),
+  ]);
+  if (editor) editor.destroy();
+  editor = grapesjs.init({
+    container: '#gjs',
+    height: 'calc(100vh - 52px)',
+    fromElement: false,
+    storageManager: false,
+    components: tpl.html,
+    style: tpl.css,
+    canvas: { styles: ['/editor-canvas.css'] },
+    deviceManager: { devices: [{ name: 'A4', width: '794px' }] },
+    // keep the template's own classes visible/editable in the selector
+    selectorManager: { componentFirst: false },
+  });
+  editor.on('load', () => editor.setDevice('A4'));
+  addBlocks(fields);
+  currentId = id;
+  history.replaceState(null, '', `?template=${encodeURIComponent(id)}`);
+  await loadTemplateList(id);
+  status(`Editing “${id}”`);
+}
+
+function snapshot() {
+  const html = editor.getHtml().replace(/^<body[^>]*>/i, '').replace(/<\/body>\s*$/i, '');
+  const css = editor.getCss({ avoidProtected: true, keepUnusedStyles: true });
+  return { html, css };
+}
+
+async function save(id) {
+  $('save').disabled = $('saveas').disabled = true;
+  try {
+    status('Saving…');
+    await api(`/api/templates/${encodeURIComponent(id)}`, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(snapshot()),
+    });
+    status(`Saved “${id}” · ${new Date().toLocaleTimeString()}`);
+    return true;
+  } catch (e) { status(e.message, true); return false; }
+  finally { $('save').disabled = $('saveas').disabled = false; }
+}
+
+$('save').addEventListener('click', () => {
+  if (confirm(`Overwrite “${currentId}”?\nThe previous version is kept in templates/${currentId}/.history/.`)) save(currentId);
+});
+$('saveas').addEventListener('click', async () => {
+  const id = (prompt('New template name (letters, numbers, - or _):', `${currentId}-copy`) || '').trim();
+  if (!id) return;
+  if (!/^[a-z0-9][a-z0-9_-]{0,40}$/i.test(id)) return status('Invalid name', true);
+  if (await save(id)) { currentId = id; await loadTemplateList(id); history.replaceState(null, '', `?template=${id}`); }
+});
+$('tpl').addEventListener('change', (e) => load(e.target.value).catch((err) => status(err.message, true)));
+
+$('preview').addEventListener('click', async () => {
+  $('preview').disabled = true; status('Rendering PDF…');
+  const t0 = performance.now();
+  try {
+    const r = await api('/api/preview', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(snapshot()) });
+    const url = URL.createObjectURL(await r.blob());
+    $('pdf').src = url; $('modal').classList.add('open');
+    status(`Preview ready · ${Math.round(performance.now() - t0)} ms`);
+  } catch (e) { status(e.message, true); }
+  finally { $('preview').disabled = false; }
+});
+$('closeModal').addEventListener('click', () => $('modal').classList.remove('open'));
+
+load(currentId).catch((e) => status(e.message, true));
+</script>
+</body>
+</html>

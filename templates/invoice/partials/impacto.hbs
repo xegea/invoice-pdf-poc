@@ -1,0 +1,19 @@
+<div class="impacto">
+  <div class="band band-orange">{{impacto.titulo}}</div>
+  <p class="impacto-intro">{{impacto.intro}}</p>
+  <div class="impacto-grid">
+    <div class="imp-box">
+      <div class="imp-head">{{impacto.emisiones.titulo}}<br><b>{{impacto.emisiones.sociedad}}</b></div>
+      <div class="imp-scale">{{{impacto.emisiones.scale}}}</div>
+      <div class="imp-val"><span>{{impacto.emisiones.t1}}{{impacto.emisiones.t2}}</span><b>{{impacto.emisiones.valor}}</b></div>
+      <div class="imp-val"><span>{{impacto.emisiones.tMedia}}</span><span>{{impacto.emisiones.media}}</span></div>
+    </div>
+    <div class="imp-box">
+      <div class="imp-head">{{impacto.residuos.titulo}}<br><b>{{impacto.residuos.sociedad}}</b></div>
+      <div class="imp-scale">{{{impacto.residuos.scale}}}</div>
+      <div class="imp-val"><span>{{impacto.residuos.t}}</span><b>{{impacto.residuos.valor}}</b></div>
+      <div class="imp-val"><span>{{impacto.residuos.tMedia}}</span><span>{{impacto.residuos.media}}</span></div>
+    </div>
+  </div>
+  <div class="band band-grey band-info">{{impacto.masInfo}}</div>
+</div>

@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+- <FACT_ISU>
+- <ZFA_XML_ISU>
+- <DATOS_FRONTAL>
+  <DATOS_FRONTAL>Factura de ELECTRICIDAD</DATOS_FRONTAL> 
+  <DATOS_FRONTAL2>comercializada por ADX Renovables S.L</DATOS_FRONTAL2> 
+  </DATOS_FRONTAL>
+- <DATOS_GENERAL>
+  <TIPO_FACTURA>ELE</TIPO_FACTURA> 
+  <TIPG_FACTURA>1</TIPG_FACTURA> 
+  <CLIENTE>0000000001</CLIENTE> 
+  <OPBEL>000000000001</OPBEL> 
+  <IDIOMA>ES</IDIOMA> 
+  <EMPLEADO /> 
+  <MOD_ENV>INT</MOD_ENV> 
+  <CONSUMO>kWh</CONSUMO> 
+  <EMAIL>cliente@example.com</EMAIL> 
+  <MARCA_AGUA /> 
+  <HOLD /> 
+  <LEGAL>ADX Renovables S.L - Calle Electrónica, 19 Planta 7 Puerta C, 08915 Badalona (Barcelona) - Inscrita en el Registro Mercantil de Córdoba, Tomo 2868, Folio 181 Hoja CO44046, inscripción 1ª CIF B72562051</LEGAL> 
+  <SOCIEDAD>1211</SOCIEDAD> 
+  <RECUP_IVA /> 
+  <ADJUNTO>X</ADJUNTO> 
+  <ZZCONTACTO1>CLIENTE@EXAMPLE.COM</ZZCONTACTO1> 
+  <ZZCONTACTO2 /> 
+  <ZZCONTACTO3 /> 
+  <ZZCONTACTO4 /> 
+  <ZZCONTACTO5 /> 
+  </DATOS_GENERAL>
+- <DATOS_RESUMENFACTURA>
+  <TEXT_CAB>Resumen de la factura</TEXT_CAB> 
+  <TEXT_CUPS>CUPS:</TEXT_CUPS> 
+  <CUPS>ES0000000000000000DEMO1P</CUPS> 
+  <TEXT_NUM_FACTURA>Factura núm:</TEXT_NUM_FACTURA> 
+  <NUM_FACTURA>DEMO000000001</NUM_FACTURA> 
+  <TEXT_FEC_EMI>Fecha factura:</TEXT_FEC_EMI> 
+  <FEC_EMI>16/07/2026</FEC_EMI> 
+  <TEXT_PER_GAS>Periodo de facturación:</TEXT_PER_GAS> 
+  <PER_GAS>Del 01/06/2026 al 30/06/2026</PER_GAS> 
+  <OPBEL>000000000001</OPBEL> 
+  <TEXT_ATR>Tarifa:</TEXT_ATR> 
+  <ATR>211L_11233 CLASSIC ESTABLE LUZ</ATR> 
+  <TEXT_ATR_DESC>Tarifa de Acceso:</TEXT_ATR_DESC> 
+  <TARIFA>3.0TD</TARIFA> 
+  <CONTADOR>00000001</CONTADOR> 
+  <TEXT_CONTADOR>Contador:</TEXT_CONTADOR> 
+  <VERTRAG>00001</VERTRAG> 
+  <TEXT_VERTRAG>Ref. contrato de suministro:</TEXT_VERTRAG> 
+  <AUSZDAT>10/12/2026</AUSZDAT> 
+  <TEXT_AUSZDAT>Fecha fin de contrato:</TEXT_AUSZDAT> 
+  <TEXT_PENALIZ>Se podrán aplicar penalizaciones en caso de cancelación anticipada del contrato</TEXT_PENALIZ> 
+  <TEXT_POTEN>Potencia(s):</TEXT_POTEN> 
+  <POTENCIA>8 kW 15.01 kW 15.01 kW 15.01 kW 15.01 kW 15.01 kW</POTENCIA> 
+  <TEXT_IMP_ATR>Importe Tarifa Acceso:</TEXT_IMP_ATR> 
+  <IMP_ATR>96.96 €</IMP_ATR> 
+  <TEXT_IMP_PT>Importe Tarifa Acceso Potencia:</TEXT_IMP_PT> 
+  <IMP_PT>26.32 €</IMP_PT> 
+  <TEXT_IMP_EN>Importe Tarifa Acceso Energía:</TEXT_IMP_EN> 
+  <IMP_EN>7.12 €</IMP_EN> 
+  <TEXT_OPBEL>Albarán nº:</TEXT_OPBEL> 
+  <POT1>8 kW</POT1> 
+  <POT2>15.01 kW</POT2> 
+  <POT3>15.01 kW</POT3> 
+  <POT4>15.01 kW</POT4> 
+  <POT5>15.01 kW</POT5> 
+  <POT6>15.01 kW</POT6> 
+  <TEXT_SEGTARIF>Segmento Tarifario:</TEXT_SEGTARIF> 
+  <SEGTARIF>2</SEGTARIF> 
+  </DATOS_RESUMENFACTURA>
+- <DATOS_POSTAL>
+  <NOMBRE>EMPRESA DEMO SL</NOMBRE> 
+  <CALLE>CL EJEMPLO</CALLE> 
+  <NUM>6</NUM> 
+  <PISO>BJ</PISO> 
+  <COD_POSTAL>00000</COD_POSTAL> 
+  <POBLACION>CIUDAD DEMO</POBLACION> 
+  <PROVINCIA>PROVINCIA DEMO</PROVINCIA> 
+  </DATOS_POSTAL>
+- <DATOS_FACTURACION>
+  <TEXT_CAB>Datos pago</TEXT_CAB> 
+  <TEXT_IBAN>Caja / Banco:</TEXT_IBAN> 
+  <IBAN>IBAN ES** 0000 **** **** **** ****</IBAN> 
+  <TEXT_FEC_CAR>Fecha cargo:</TEXT_FEC_CAR> 
+  <FEC_CAR>17/07/2026</FEC_CAR> 
+  <TEXT_TOTAL>Importe:</TEXT_TOTAL> 
+  <TOTAL>776,56 €</TOTAL> 
+  </DATOS_FACTURACION>
+- <AVERIAS>
+  <TEXT_CAB>Averías</TEXT_CAB> 
+  <TEXT_TELF>Teléfono gratuito</TEXT_TELF> 
+  <TELF>900333999</TELF> 
+  <TEXT_REFCONT>Ref. contrato de acceso:</TEXT_REFCONT> 
+  <REFCONT>0000000002</REFCONT> 
+  <TEXT_DISTRI>Empresa distribuidora:</TEXT_DISTRI> 
+  <DISTRIB>UNIÓN FENOSA DISTRIBUCIÓN, S.A.</DISTRIB> 
+  </AVERIAS>
+- <SAC>
+  <TEXT_CAB>Atención al Cliente</TEXT_CAB> 
+  <TEXT_TELF>Teléfono gratuito</TEXT_TELF> 
+  <TELF>900 747 185</TELF> 
+  <MAIL>sac@adxenergia.es</MAIL> 
+  <TEXT_CALLE>C/ Electrónica 19, Planta 2 - 08915 Badalona</TEXT_CALLE> 
+  </SAC>
+- <QR>
+  <URL_QR>https://comparador.cnmc.gob.es/comparador/QRE?&cp=00000&cups=ES0000000000000000DEMO1P&pP1=8&pP2=15.01&caP1=46779&caP2=0&caP3=0&iniA=2025-06-01&tc=E0&finPen=0001-02-01&finContrato=2026-12-10&tf=N&imp=776.56&cfP1=0&cfP2=0&cfP3=1060&iniF=2025-06-01&finF=2026-06-30&impSA=0&impOtrosConIE=3.76&impOtrosSinIE=1.82&com=&pmaxP1=0&pmaxP2=0&fFact=2026-07-16&dtoBS=0&finBS=0.57&ajuste=0&impPot=83.81&impEner=500.05&dto=0&prP1=24.376529&prP2=15.618022&rev=0&prE1=0&prE2=0&prE3=0&verde=1</URL_QR> 
+  <TEXT_QR>En el código QR o en el enlace https://comparador.cnmc.gob.es puedes consultar y comparar las distintas ofertas vigentes de las comercializadoras de energía eléctrica en el mercado libre.</TEXT_QR> 
+  </QR>
+- <DATOS_ORIGEN>
+  <TEXT_CAB>Origen de la electricidad de tu comercializadora 2025</TEXT_CAB> 
+- <DETALLE_GRF>
+- <ORIGEN>
+  <CONCEPTO>Origen</CONCEPTO> 
+  <VALOR1>Adx Renovables, S.L.</VALOR1> 
+  <VALOR2>Mix generación nacional</VALOR2> 
+  </ORIGEN>
+- <ORIGEN>
+  <CONCEPTO>Renovable</CONCEPTO> 
+  <VALOR1>33,5%</VALOR1> 
+  <VALOR2>55,2%</VALOR2> 
+  </ORIGEN>
+- <ORIGEN>
+  <CONCEPTO>Cogen. de Alta Eficiencia</CONCEPTO> 
+  <VALOR1>0,7%</VALOR1> 
+  <VALOR2>1,5%</VALOR2> 
+  </ORIGEN>
+- <ORIGEN>
+  <CONCEPTO>CC Gas Natural</CONCEPTO> 
+  <VALOR1>26,0%</VALOR1> 
+  <VALOR2>17,4%</VALOR2> 
+  </ORIGEN>
+- <ORIGEN>
+  <CONCEPTO>Carbón</CONCEPTO> 
+  <VALOR1>3,5%</VALOR1> 
+  <VALOR2>0,6%</VALOR2> 
+  </ORIGEN>
+- <ORIGEN>
+  <CONCEPTO>Fuel/Gas</CONCEPTO> 
+  <VALOR1>1,6%</VALOR1> 
+  <VALOR2>1,1%</VALOR2> 
+  </ORIGEN>
+- <ORIGEN>
+  <CONCEPTO>Nuclear</CONCEPTO> 
+  <VALOR1>27,5%</VALOR1> 
+  <VALOR2>19,2%</VALOR2> 
+  </ORIGEN>
+- <ORIGEN>
+  <CONCEPTO>Otras no renovables</CONCEPTO> 
+  <VALOR1>7,2%</VALOR1> 
+  <VALOR2>5,0%</VALOR2> 
+  </ORIGEN>
+  </DETALLE_GRF>
+  </DATOS_ORIGEN>
+- <AUDAX_GAS>
+  <TEXT_CAB>ADX Gas -</TEXT_CAB> 
+  <TEXT_FIJO1>Recuerda que también puedes contratar tu suministro de gas natural con ADX. ¡Infórmate y ahorra en tu factura!</TEXT_FIJO1> 
+  <TEXT_FIJO2 /> 
+  </AUDAX_GAS>
+- <DATOS_IMPACTO>
+  <TEXT_CAB>Impacto ambiental de su comercializadora. 2025</TEXT_CAB> 
+  <TEXT_FIJO1>La letra ‘A’ corresponde al mínimo impacto ambiental, la ‘D’ a la media de generación nacional y la 'G' al máximo impacto ambiental.</TEXT_FIJO1> 
+  <TEXT_FIJO2>Mas información sobre el origen de su electrididad en https://gdo.cnmc.es/</TEXT_FIJO2> 
+  <TEXT_EMI1>Emisiones de CO² equivalente</TEXT_EMI1> 
+  <TEXT_SUB_INDICE /> 
+  <TEXT_EMI2 /> 
+  <TEXT_SOCIEDAD>Adx Renovables, S.L.</TEXT_SOCIEDAD> 
+  <VAL_EMI>G</VAL_EMI> 
+  <TEXT_EME1>Emisiones CO</TEXT_EME1> 
+  <TEXT_EME2>eq.(g/kWh)</TEXT_EME2> 
+  <EME>180</EME> 
+  <TEXT_MED>Media nacional (g/kWh)</TEXT_MED> 
+  <MED>107</MED> 
+  <TEXT_RED1>Residuos radioactivos alta actividad</TEXT_RED1> 
+  <VAL_RED>F</VAL_RED> 
+  <TEXT_RED>Residuos radioactivos (µg/kWh)</TEXT_RED> 
+  <RED>665</RED> 
+  <TEXT_NAC>Media nacional (µg/kWh)</TEXT_NAC> 
+  <NAC>464</NAC> 
+  </DATOS_IMPACTO>
+- <DATOS_CONSEJOS>
+  <TEXT_CAB>10 consejos para no derrochar energía</TEXT_CAB> 
+  <TEXT_FIJO1>1.- Una temperatura de calefacción de 19ºC es suficiente para mantener el confort de una vivienda.</TEXT_FIJO1> 
+  <TEXT_FIJO2>2.- Utiliza preferentemente lámparas LED. Con el mismo nivel lumínico consumen muchísimo menos y su vida útil es muy larga.</TEXT_FIJO2> 
+  <TEXT_FIJO3>3.- Usa lavadora, lavavajillas y secadora a su máxima capacidad: ponlos solo cuando estén llenos y, preferiblemente, en los programas económicos.</TEXT_FIJO3> 
+  <TEXT_FIJO4>4.- Al adquirir un electrodoméstico, fíjate en su etiqueta energética y, a igualdad de prestaciones, elige siempre el más eficiente. A la larga, ahorrarás mucho.</TEXT_FIJO4> 
+  <TEXT_FIJO5>5.- Usa el transporte público o comparte coche con vecinos y compañeros de trabajo. Si puedes, evita viajar en coche.</TEXT_FIJO5> 
+  <TEXT_FIJO6>6.- Para distancias cortas, es mucho más eficiente y saludable desplazarse a pie o en vehículos sostenibles, como la bicicleta.</TEXT_FIJO6> 
+  <TEXT_FIJO7>7.- Apaga el motor en paradas de más de 60 segundos (si tu coche no lo hace de forma automática), no des acelerones y procura usar marchas largas.</TEXT_FIJO7> 
+  <TEXT_FIJO8>8.- Instala ventanas con doble cristal y carpintería con rotura de puente térmico (un aislante que evita el contacto entre la cara interior y la exterior).</TEXT_FIJO8> 
+  <TEXT_FIJO9>9.- Si vas a construir o rehabilitar una casa, no escatimes en los cerramientos exteriores (ventanas y balcones). Ahorrarás dinero en climatización y ganarás en confort.</TEXT_FIJO9> 
+  <TEXT_FIJO10>10.- El autoconsumo es una energía 100% renovable, ilimitada y gratuita. Instala placas solares en tu casa o Comunidad de vecinos y reducirás tu factura de la luz.</TEXT_FIJO10> 
+  </DATOS_CONSEJOS>
+- <DATOS_SUMINISTRO_LG>
+  <TEXT_CAB>Datos del suministro</TEXT_CAB> 
+  <TEXT_RAZONS>Razón Social:</TEXT_RAZONS> 
+  <RAZONS>EMPRESA DEMO SL</RAZONS> 
+  <TEXT_DOMS>Domicilio Social:</TEXT_DOMS> 
+  <DOMS>CL EJEMPLO 6 BJ</DOMS> 
+  <TEXT_DIRS>Dirección del Suministro:</TEXT_DIRS> 
+  <DIRS>CL MUESTRA 1</DIRS> 
+  <TEXT_LOCALIDAD>Localidad:</TEXT_LOCALIDAD> 
+  <LOCALIDAD>CIUDAD DEMO (PROVINCIA DEMO)</LOCALIDAD> 
+  <TEXT_COMPREG>Componentes regulados:</TEXT_COMPREG> 
+  <COMPREG>Orden TED/517/2022</COMPREG> 
+  <TEXT_NIF>CIF/NIF Titular:</TEXT_NIF> 
+  <NIF>B00000000</NIF> 
+  </DATOS_SUMINISTRO_LG>
+- <NOTIFICACION>
+  <TEXT_CAB>Notificación</TEXT_CAB> 
+  <TEXT_FIJO1>Los derechos de crédito derivados del presente contrato han sido pignorados a favor de Shell Energy Europe Limited, proveedor de Adx Renovables, S.L., en virtud de contrato de prenda suscrito el 31 de enero de 2023, elevado a público en esa misma fecha y tal y como fue extendido y ratificado, con posterioridad, en cada momento. La prenda no afecta en modo alguno a la relación entre Adx Renovables, S.L., y EMPRESA DEMO SL, que permanecerá inalterada, ni implica obligación adicional alguna para EMPRESA DEMO SL.</TEXT_FIJO1> 
+  <TEXT_FIJO2 /> 
+  <TEXT_FIJO3 /> 
+  <TEXT_FIJO4 /> 
+  <TEXT_FIJO5 /> 
+  <TEXT_FIJO6 /> 
+  </NOTIFICACION>
+- <DATOS_HIST_ELE>
+  <TEXT_CAB>Consumos anteriores en kWh</TEXT_CAB> 
+  <TEXT_LEY_RP1>Puede consultar su consumo horario en el portal web de su distribuidora https://areaprivada.ufd.es/</TEXT_LEY_RP1> 
+- <DETALLE_HIST>
+- <HISTORICO>
+  <FECHA>Jun. - Jun. '25</FECHA> 
+  <CONS_EP1>3908</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Jul. - Jul. '25</FECHA> 
+  <CONS_EP1>4394</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Ago. - Ago. '25</FECHA> 
+  <CONS_EP1>4870</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Sep. - Sep. '25</FECHA> 
+  <CONS_EP1>4100</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Oct. - Oct. '25</FECHA> 
+  <CONS_EP1>3997</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Nov. - Nov. '25</FECHA> 
+  <CONS_EP1>3468</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Dic. - Dic. '25</FECHA> 
+  <CONS_EP1>3291</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Ene. - Ene. '26</FECHA> 
+  <CONS_EP1>3146</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  <FORMATO>F1</FORMATO> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Feb. - Feb. '26</FECHA> 
+  <CONS_EP1>2789</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  <FORMATO>F1</FORMATO> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Mar. - Mar. '26</FECHA> 
+  <CONS_EP1>2862</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  <FORMATO>F1</FORMATO> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Abr. - Abr. '26</FECHA> 
+  <CONS_EP1>3110</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  <FORMATO>F1</FORMATO> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>May. - May. '26</FECHA> 
+  <CONS_EP1>3147</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  <FORMATO>F1</FORMATO> 
+  </HISTORICO>
+- <HISTORICO>
+  <FECHA>Jun. - Jun. '26</FECHA> 
+  <CONS_EP1>3697</CONS_EP1> 
+  <CONS_EP2>0</CONS_EP2> 
+  <CONS_EP3>0</CONS_EP3> 
+  <FORMATO>F1</FORMATO> 
+  </HISTORICO>
+  </DETALLE_HIST>
+  </DATOS_HIST_ELE>
+- <DATOS_LECTURAS_ELE>
+  <TEXT_CAB>Lectura de contador</TEXT_CAB> 
+  <TEXT_FECHA_ACT>Energia activa</TEXT_FECHA_ACT> 
+  <TEXT_FECHA_ANT>Energia reactiva</TEXT_FECHA_ANT> 
+  <FECHA_ACT>30/06/2026</FECHA_ACT> 
+  <FECHA_ANT>01/06/2026</FECHA_ANT> 
+  <LECTURA_ACT_REACTIVA>30/06/2026</LECTURA_ACT_REACTIVA> 
+  <LECTURA_ANT_REACTIVA>01/06/2026</LECTURA_ANT_REACTIVA> 
+  <TEXT_MAXIMETRO>Maxímetro</TEXT_MAXIMETRO> 
+  <FECHA_MAXIMETRO>30/06/2026</FECHA_MAXIMETRO> 
+- <DETALLE_LEC>
+- <LECTURA>
+  <PERIODO>P5</PERIODO> 
+  <LECTURA_ACTUAL>23.112</LECTURA_ACTUAL> 
+  <LECTURA_ANTERIOR>23.112</LECTURA_ANTERIOR> 
+  <VALOR_ACT_REACTIVA>10.138</VALOR_ACT_REACTIVA> 
+  <VALOR_ANT_REACTIVA>10.138</VALOR_ANT_REACTIVA> 
+  <MAXIMETRO>0</MAXIMETRO> 
+  </LECTURA>
+- <LECTURA>
+  <PERIODO>P1</PERIODO> 
+  <LECTURA_ACTUAL>30.407</LECTURA_ACTUAL> 
+  <LECTURA_ANTERIOR>30.407</LECTURA_ANTERIOR> 
+  <VALOR_ACT_REACTIVA>11.670</VALOR_ACT_REACTIVA> 
+  <VALOR_ANT_REACTIVA>11.670</VALOR_ANT_REACTIVA> 
+  <MAXIMETRO>0</MAXIMETRO> 
+  </LECTURA>
+- <LECTURA>
+  <PERIODO>P2</PERIODO> 
+  <LECTURA_ACTUAL>61.083</LECTURA_ACTUAL> 
+  <LECTURA_ANTERIOR>61.083</LECTURA_ANTERIOR> 
+  <VALOR_ACT_REACTIVA>25.619</VALOR_ACT_REACTIVA> 
+  <VALOR_ANT_REACTIVA>25.619</VALOR_ANT_REACTIVA> 
+  <MAXIMETRO>0</MAXIMETRO> 
+  </LECTURA>
+- <LECTURA>
+  <PERIODO>P6</PERIODO> 
+  <LECTURA_ACTUAL>106.734</LECTURA_ACTUAL> 
+  <LECTURA_ANTERIOR>104.788</LECTURA_ANTERIOR> 
+  <VALOR_ACT_REACTIVA>38.953</VALOR_ACT_REACTIVA> 
+  <VALOR_ANT_REACTIVA>38.297</VALOR_ANT_REACTIVA> 
+  <MAXIMETRO>0</MAXIMETRO> 
+  </LECTURA>
+- <LECTURA>
+  <PERIODO>P4</PERIODO> 
+  <LECTURA_ACTUAL>27.644</LECTURA_ACTUAL> 
+  <LECTURA_ANTERIOR>26.953</LECTURA_ANTERIOR> 
+  <VALOR_ACT_REACTIVA>10.257</VALOR_ACT_REACTIVA> 
+  <VALOR_ANT_REACTIVA>9.998</VALOR_ANT_REACTIVA> 
+  <MAXIMETRO>0</MAXIMETRO> 
+  </LECTURA>
+- <LECTURA>
+  <PERIODO>P3</PERIODO> 
+  <LECTURA_ACTUAL>48.840</LECTURA_ACTUAL> 
+  <LECTURA_ANTERIOR>47.780</LECTURA_ANTERIOR> 
+  <VALOR_ACT_REACTIVA>17.558</VALOR_ACT_REACTIVA> 
+  <VALOR_ANT_REACTIVA>17.161</VALOR_ANT_REACTIVA> 
+  <MAXIMETRO>0</MAXIMETRO> 
+  </LECTURA>
+  </DETALLE_LEC>
+  </DATOS_LECTURAS_ELE>
+- <DATOS_CONCEPTOS>
+  <TEXT_CAB>Detalles de facturación</TEXT_CAB> 
+  <TEXT_CONCEPTO>Concepto</TEXT_CONCEPTO> 
+  <TEXT_CALCULO>Cálculo</TEXT_CALCULO> 
+  <TEXT_IMPORTE>Importes</TEXT_IMPORTE> 
+- <DETALLE_PROD>
+- <DETALLE_CON>
+- <POSICION>
+  <CONCEPTO>Término Energía P3</CONCEPTO> 
+  <CALC1>1.060,00 kWh x 0,136135 €/kWh</CALC1> 
+  <CALC2>(Período comprendido entre: 01/06/2026 y 30/06/2026 )</CALC2> 
+  <IMP>144,30 €</IMP> 
+  <FORMATO>F4</FORMATO> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término Energía P4</CONCEPTO> 
+  <CALC1>691,00 kWh x 0,135145 €/kWh</CALC1> 
+  <CALC2>(Período comprendido entre: 01/06/2026 y 30/06/2026 )</CALC2> 
+  <IMP>93,39 €</IMP> 
+  <FORMATO>F4</FORMATO> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término Energía P6</CONCEPTO> 
+  <CALC1>1.946,00 kWh x 0,134820 €/kWh</CALC1> 
+  <CALC2>(Período comprendido entre: 01/06/2026 y 30/06/2026 )</CALC2> 
+  <IMP>262,36 €</IMP> 
+  <FORMATO>F4</FORMATO> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término de Potencia P1</CONCEPTO> 
+  <CALC1>8,000 kW</CALC1> 
+  <CALC2>x 30 días x 0,066785 €/kW día</CALC2> 
+  <IMP>16,03 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término de Potencia P2</CONCEPTO> 
+  <CALC1>15,010 kW</CALC1> 
+  <CALC2>x 30 días x 0,042789 €/kW día</CALC2> 
+  <IMP>19,27 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término de Potencia P3</CONCEPTO> 
+  <CALC1>15,010 kW</CALC1> 
+  <CALC2>x 30 días x 0,030087 €/kW día</CALC2> 
+  <IMP>13,55 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término de Potencia P4</CONCEPTO> 
+  <CALC1>15,010 kW</CALC1> 
+  <CALC2>x 30 días x 0,028457 €/kW día</CALC2> 
+  <IMP>12,81 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término de Potencia P5</CONCEPTO> 
+  <CALC1>15,010 kW</CALC1> 
+  <CALC2>x 30 días x 0,024697 €/kW día</CALC2> 
+  <IMP>11,12 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Término de Potencia P6</CONCEPTO> 
+  <CALC1>15,010 kW</CALC1> 
+  <CALC2>x 30 días x 0,024499 €/kW día</CALC2> 
+  <IMP>11,03 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Liquidación SSAA</CONCEPTO> 
+  <CALC1>3.147 kWh x 0,010308 €/kWh</CALC1> 
+  <CALC2>(Período comprendido entre: 30/04/2026 y 31/05/2026 )</CALC2> 
+  <IMP>32,44 €</IMP> 
+  <FORMATO>F4</FORMATO> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Exceso de potencia</CONCEPTO> 
+  <CALC2>(Período comprendido entre: 31/05/2026 y 30/06/2026 )</CALC2> 
+  <IMP>0,52 €</IMP> 
+  <FORMATO>F4</FORMATO> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Financiación Bono Social según TED/733/2022</CONCEPTO> 
+  <CALC1>30 días x 0,019121 €/día</CALC1> 
+  <CALC2>(Período comprendido entre: 01/06/2026 y 30/06/2026 )</CALC2> 
+  <IMP>0,57 €</IMP> 
+  <FORMATO>F4</FORMATO> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Energía Reactiva P3</CONCEPTO> 
+  <IMP>1,95 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Energía Reactiva P4</CONCEPTO> 
+  <IMP>1,29 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Subtotal</CONCEPTO> 
+  <IMP>617,39 €</IMP> 
+  <FORMATO>F8</FORMATO> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Impuesto sobre la electricidad</CONCEPTO> 
+  <CALC1>620,63 €</CALC1> 
+  <CALC2>x 5,112696 %</CALC2> 
+  <IMP>31,73 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Alquiler de equipos</CONCEPTO> 
+  <IMP>1,82 €</IMP> 
+  </POSICION>
+  </DETALLE_CON>
+  </DETALLE_PROD>
+- <DETALLE_IMP>
+- <POSICION>
+  <CONCEPTO>Base imponible (21%)</CONCEPTO> 
+  <IMP>654,18 €</IMP> 
+  </POSICION>
+- <POSICION>
+  <CONCEPTO>Impuesto IVA 21%</CONCEPTO> 
+  <IMP>137,38 €</IMP> 
+  <FORMATO>F3</FORMATO> 
+  </POSICION>
+  </DETALLE_IMP>
+  <TEXT_TOTAL>Total a pagar</TEXT_TOTAL> 
+  <TOTAL>776,56 €</TOTAL> 
+  </DATOS_CONCEPTOS>
+- <ARCHIVE_INFO>
+  <ARCHIVE>NO</ARCHIVE> 
+  <SAP_OBJECT>PRINTDOC</SAP_OBJECT> 
+  <OBJECT_ID>000000000001</OBJECT_ID> 
+  <ARCH_OBJECT>ISU_BILL</ARCH_OBJECT> 
+  </ARCHIVE_INFO>
+- <ARBITRAJE>
+  <TEXT_CAB>Establecimiento Adherido Arbitraje de Consumo</TEXT_CAB> 
+  <TEXT_FIJO1>Puede usted realizar las reclamaciones que estime pertinentes, en relación con el Contrato de Suministro o sus servicios adicionales que en su caso haya contratado, mediante escrito dirigido a ADX RENOVABLES, S.L, Calle Electrónica 19, Planta 7C. 08915 Badalona, Barcelona, a través del teléfono gratuito de atención al cliente 900747185 o por email a sac@adxenergia.es. Interpuesta una reclamación, si no se hubiera resuelto en el plazo de un (1) mes o si resuelta no fuera estimada, podrá presentar la reclamación ante las Juntas Arbitrales de Consumo para los asuntos que ADX haya sometido a arbitraje. Las entidades competentes a tal efecto son las Juntas Arbitrales de ámbito autonómico y la Junta Arbitral Nacional de Consumo. Puede consultar más información en: www.consumo.gob.es/es/consumo/sistema-arbitral-de-consumo o a través del teléfono de contacto 918224487. Si el suministro se localiza en Cataluña, también podrá dirigirse a la siguiente dirección: Calle Electrónica,19, 2C, 08915, Badalona (Barcelona).</TEXT_FIJO1> 
+  </ARBITRAJE>
+- <ATENCION>
+  <TEXT_CAB>Atención:</TEXT_CAB> 
+  <TEXT_FIJO1>El precio de la energía incluye los "Costes del Sistema" (restricciones técnicas, procesos del operador y concepto de interrumpibilidad), cuyo valor de referencia actual son los datos publicados por Red Eléctrica de España (REE) a través de sus canales habilitados a tal efecto en su página web ( https://www.esios.ree.es/ ). En caso de que, en el ciclo de facturación de este mes natural, la media de dichos costes haya superado o haya descendido en más del porcentaje de desviación contenido en la Cláusula 3.2. de las Condiciones Generales del Contrato de Suministro respecto al valor de referencia, se aplicará automáticamente un recargo o abono en su siguiente ciclo de facturación, respectivamente, por la diferencia. Esta variación no altera las condiciones contractuales y se repercute sobre el consumo en BBCC (Barras de Central, es decir, antes de pérdidas de red), más las pérdidas de red según tarifa de acceso. Sirve este párrafo como notificación suficiente al cliente conforme a la normativa aplicable de las posibles variaciones del precio que pueden sucederse en concepto de cambios de los Costes del Sistema según la Cláusula 3.2. de las Condiciones Generales del Contrato de Suministro. El precio resultante es de 17,27 €</TEXT_FIJO1> 
+  </ATENCION>
+  </ZFA_XML_ISU>
+  </FACT_ISU>

@@ -1,0 +1,14 @@
+<div class="origen">
+  <h2>{{origen.titulo}}</h2>
+  <div class="band band-orange">{{origen.titulo}}</div>
+  <div class="band band-grey">{{origen.comercializadora}}</div>
+  <div class="donut-wrap">{{{origen.donut}}}</div>
+  <table class="mix">
+    <thead><tr><th>{{origen.cols.[0]}}</th><th>{{origen.cols.[1]}}</th><th>{{origen.cols.[2]}}</th></tr></thead>
+    <tbody>
+      {{#each origen.filas}}
+      <tr><td>{{concepto}}</td><td>{{v1}}</td><td>{{v2}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

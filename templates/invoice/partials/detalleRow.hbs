@@ -1,0 +1,17 @@
+{{#if stacked}}
+<div class="row stacked">
+  <div class="c">{{concepto}}</div>
+  <div class="calc"><span>{{calc1}}</span><small>{{calc2}}</small></div>
+  <div class="imp">{{imp}}</div>
+</div>
+{{else if subtotal}}
+<div class="row subtotal"><div class="c"></div><div class="calc"><b>{{concepto}}</b></div><div class="imp"><b>{{imp}}</b></div></div>
+{{else if calc1}}
+<div class="row inline">
+  <div class="c">{{concepto}}</div>
+  <div class="calc">{{calc1}} {{calc2}}</div>
+  <div class="imp">{{imp}}</div>
+</div>
+{{else}}
+<div class="row plain"><div class="c">{{concepto}}</div><div class="imp">{{imp}}</div></div>
+{{/if}}

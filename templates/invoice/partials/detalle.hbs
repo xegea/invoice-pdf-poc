@@ -1,0 +1,8 @@
+<div class="detalle">
+  <h2>{{detalle.titulo}}</h2>
+  <div class="row head"><div class="c">{{detalle.tConcepto}}</div><div class="calc">{{detalle.tCalculo}}</div><div class="imp">{{detalle.tImporte}}</div></div>
+  {{#each detalle.topRows}}
+  <div class="row top"><div class="c"></div><div class="calc"><b>{{concepto}}</b></div><div class="imp">{{imp}}</div></div>
+  {{/each}}
+  {{#each detalle.page1}}{{> detalleRow}}{{/each}}
+</div>

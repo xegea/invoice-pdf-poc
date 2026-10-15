@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice Generator</title>
+<style>
+  :root { --bg:#f6f6f4; --fg:#1d1d1b; --muted:#6b6b66; --accent:#e8ac1f; --card:#fff; --line:#dcdcd6; --err:#b3261e; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#161614; --fg:#eee; --muted:#9a9a93; --card:#20201d; --line:#38382f; } }
+  * { box-sizing: border-box; }
+  [hidden] { display:none !important; }
+  body { margin:0; font:14px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+  header { padding:14px 24px; border-bottom:1px solid var(--line); background:var(--card); display:flex; gap:10px; align-items:center; }
+  header i { width:10px; height:10px; border-radius:50%; background:var(--accent); display:inline-block; }
+  h1 { font-size:16px; margin:0; }
+  main { display:grid; grid-template-columns:340px 1fr; gap:20px; padding:20px 24px; height:calc(100vh - 54px); }
+  @media (max-width:800px) { main { grid-template-columns:1fr; height:auto; } }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 8px; }
+  .drop { display:block; border:2px dashed var(--line); border-radius:10px; padding:26px 12px; text-align:center; cursor:pointer; color:var(--muted); }
+  .drop.over { border-color:var(--accent); color:var(--fg); }
+  .info { margin-top:10px; font-size:13px; }
+  .info b { display:inline-block; min-width:70px; color:var(--muted); font-weight:500; }
+  select, button { font:inherit; padding:8px 10px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--fg); width:100%; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#1d1d1b; font-weight:600; cursor:pointer; margin-top:6px; }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .section { margin-top:18px; }
+  .timings { font:12px ui-monospace, monospace; }
+  .timings div { display:flex; justify-content:space-between; padding:1px 0; }
+  .timings .tot { border-top:1px solid var(--line); margin-top:4px; padding-top:4px; font-weight:700; }
+  .err { color:var(--err); margin-top:8px; }
+  .viewer { display:flex; flex-direction:column; min-height:0; }
+  .viewer iframe { flex:1; width:100%; min-height:600px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+  .empty { flex:1; display:grid; place-items:center; color:var(--muted); border:1px dashed var(--line); border-radius:8px; min-height:300px; }
+  a.edit { display:inline-block; margin-top:8px; color:var(--accent); text-decoration:none; }
+  a.dl { display:inline-block; margin-top:8px; color:var(--accent); }
+</style>
+</head>
+<body>
+<header><i></i><h1>Invoice Generator · PoC</h1></header>
+<main>
+  <div class="panel">
+    <h2>1. Data (XML)</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept=".xml,.txt,text/xml,application/xml" hidden>
+      Drop the XML here<br>or click to choose it
+    </label>
+    <div class="info" id="info"></div>
+
+    <div class="section">
+      <h2>2. Template</h2>
+      <select id="template"><option value="invoice">invoice</option></select>
+      <a class="edit" id="editLink" href="/editor.html?template=invoice">✎ Edit template</a>
+    </div>
+
+    <div class="section">
+      <button class="primary" id="gen" disabled>Generate PDF</button>
+      <div class="err" id="err"></div>
+    </div>
+
+    <div class="section" id="timingsBox" hidden>
+      <h2>Generation time</h2>
+      <div class="timings" id="timings"></div>
+      <a class="dl" id="dl" href="#">Download PDF</a>
+    </div>
+  </div>
+
+  <div class="panel viewer">
+    <h2>Preview</h2>
+    <div class="empty" id="empty">The generated PDF will appear here</div>
+    <iframe id="frame" hidden title="Generated PDF"></iframe>
+  </div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+let xmlFile = null;
+let blobUrl = null;
+
+function showError(msg) { $('err').textContent = msg || ''; }
+
+async function pick(file) {
+  showError('');
+  xmlFile = file;
+  $('gen').disabled = true;
+  $('info').textContent = 'Reading…';
+  const fd = new FormData(); fd.append('xml', file);
+  const r = await fetch('/api/inspect', { method: 'POST', body: fd });
+  const j = await r.json();
+  if (!r.ok) { $('info').textContent = ''; showError(j.error); xmlFile = null; return; }
+  $('info').innerHTML = `<div><b>File</b>${file.name}</div><div><b>Invoice</b>${j.numFactura}</div>` +
+    `<div><b>Customer</b>${j.cliente}</div><div><b>Period</b>${j.periodo}</div><div><b>Total</b>${j.total}</div>`;
+  $('gen').disabled = false;
+}
+
+async function loadTemplates() {
+  try {
+    const ids = await (await fetch('/api/templates')).json();
+    $('template').innerHTML = ids.map((i) => `<option>${i}</option>`).join('');
+  } catch {}
+  syncEditLink();
+}
+function syncEditLink() { $('editLink').href = `/editor.html?template=${encodeURIComponent($('template').value)}`; }
+$('template').addEventListener('change', syncEditLink);
+loadTemplates();
+
+$('file').addEventListener('change', (e) => e.target.files[0] && pick(e.target.files[0]));
+const drop = $('drop');
+['dragenter','dragover'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave','drop'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', (e) => e.dataTransfer.files[0] && pick(e.dataTransfer.files[0]));
+
+$('gen').addEventListener('click', async () => {
+  if (!xmlFile) return;
+  showError('');
+  $('gen').disabled = true; $('gen').textContent = 'Generating…';
+  const t0 = performance.now();
+  try {
+    const fd = new FormData(); fd.append('xml', xmlFile); fd.append('template', $('template').value);
+    const r = await fetch('/api/generate', { method: 'POST', body: fd });
+    if (!r.ok) throw new Error((await r.json()).error || 'Error generating the PDF');
+    const timings = JSON.parse(r.headers.get('X-Timings'));
+    const blob = await r.blob();
+    if (blobUrl) URL.revokeObjectURL(blobUrl);
+    blobUrl = URL.createObjectURL(blob);
+    $('frame').src = blobUrl; $('frame').hidden = false; $('empty').hidden = true;
+    $('dl').href = blobUrl; $('dl').download = `factura-${timings.numFactura}.pdf`;
+    const rows = [['XML parsing', timings.parseXml], ['View model', timings.viewModel], ['Template (HTML)', timings.template], ['PDF engine (Chromium)', timings.pdf]];
+    $('timings').innerHTML = rows.map(([k, v]) => `<div><span>${k}</span><span>${v} ms</span></div>`).join('') +
+      `<div class="tot"><span>Server total</span><span>${timings.total} ms</span></div>` +
+      `<div><span>Total (with network)</span><span>${Math.round(performance.now() - t0)} ms</span></div>` +
+      `<div><span>Size</span><span>${(timings.bytes / 1024).toFixed(0)} KB</span></div>`;
+    $('timingsBox').hidden = false;
+  } catch (e) { showError(e.message); }
+  finally { $('gen').disabled = false; $('gen').textContent = 'Generate PDF'; }
+});
+</script>
+</body>
+</html>

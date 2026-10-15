@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Factura {{resumen.numFactura}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+
+{{!-- Page 1: summary + first part of the billing detail --}}
+<section class="page">
+  {{> watermark}}{{> legal}}{{> header}}
+  <div class="col col-left">{{> leftColumn}}</div>
+  <div class="col col-right">
+    {{> direccion}}
+    {{> detalle}}
+  </div>
+</section>
+
+{{!-- Page 2: same summary, billing detail continues + taxes + total --}}
+<section class="page">
+  {{> watermark}}{{> legal}}{{> header}}
+  <div class="col col-left">{{> leftColumn}}</div>
+  <div class="col col-right col-right-cont">
+    {{> detalleContinuacion}}
+  </div>
+</section>
+
+{{!-- Page 3: origin, environmental impact, legal notices, contacts --}}
+<section class="page">
+  {{> watermark}}{{> legal}}{{> header}}
+  {{> origen}}
+  {{> impacto}}
+  {{> avisos}}
+  {{> footer}}
+</section>
+
+{{!-- Page 4: energy saving tips --}}
+<section class="page">
+  {{> watermark}}{{> legal}}{{> header}}
+  {{> consejos}}
+  {{> footer}}
+</section>
+
+</body>
+</html>
