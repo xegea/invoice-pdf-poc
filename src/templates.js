@@ -47,7 +47,7 @@ export function readTemplate(id) {
   if (!fs.existsSync(path.join(dir, 'invoice.hbs'))) throw Object.assign(new Error(`Unknown template: ${id}`), { status: 404 });
   const full = expandPartials(fs.readFileSync(path.join(dir, 'invoice.hbs'), 'utf8'), dir);
   const body = /<body[^>]*>([\s\S]*)<\/body>/i.exec(full)?.[1] ?? full;
-  const css = fs.readFileSync(path.join(dir, 'invoice.css'), 'utf8');
+  const css = unwrapDeviceMedia(fs.readFileSync(path.join(dir, 'invoice.css'), 'utf8'));
   return { html: toEditorHtml(body), css };
 }
 
@@ -66,7 +66,15 @@ ${bodyHbs}
 `;
 }
 
+// The editor's A4 device used to wrap every style in `@media (max-width: 794px)`,
+// which Chromium does not apply when printing to PDF. Unwrap them so templates
+// saved that way (and anything saved by older editor builds) render correctly.
+export function unwrapDeviceMedia(css) {
+  return css.replace(/@media\s*\(max-width:\s*794px\)\s*\{((?:[^{}]|\{[^{}]*\})*)\}/g, '$1');
+}
+
 export function ensurePageRule(css) {
+  css = unwrapDeviceMedia(css);
   return /@page\b/.test(css) ? css : `@page { size: A4; margin: 0; }\n${css}`;
 }
 

@@ -96,7 +96,8 @@ async function load(id) {
     components: tpl.html,
     style: tpl.css,
     canvas: { styles: ['/editor-canvas.css'] },
-    deviceManager: { devices: [{ name: 'A4', width: '794px' }] },
+    // widthMedia '' => styles are written without a @media wrapper (print ignores it)
+    deviceManager: { devices: [{ name: 'A4', width: '794px', widthMedia: '' }] },
     // keep the template's own classes visible/editable in the selector
     selectorManager: { componentFirst: false },
   });

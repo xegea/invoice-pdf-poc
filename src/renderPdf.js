@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Handlebars from 'handlebars';
 import { chromium } from 'playwright';
+import { unwrapDeviceMedia } from './templates.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = path.join(here, '..', 'templates');
@@ -20,7 +21,7 @@ function loadTemplate(id) {
       hbs.registerPartial(path.basename(f, '.hbs'), fs.readFileSync(path.join(partialsDir, f), 'utf8'));
     }
   }
-  const css = fs.readFileSync(path.join(dir, 'invoice.css'), 'utf8');
+  const css = unwrapDeviceMedia(fs.readFileSync(path.join(dir, 'invoice.css'), 'utf8'));
   const compiled = hbs.compile(fs.readFileSync(path.join(dir, 'invoice.hbs'), 'utf8'));
   const tpl = { render: (vm) => compiled({ ...vm, css }) };
   cache.set(id, tpl);
@@ -33,7 +34,7 @@ export function renderHtml(viewModel, templateId = 'invoice') {
 
 // Render an unsaved template (editor preview): { hbs, css } instead of an id.
 export function renderHtmlFromSource({ hbs, css }, viewModel) {
-  return Handlebars.create().compile(hbs)({ ...viewModel, css });
+  return Handlebars.create().compile(hbs)({ ...viewModel, css: unwrapDeviceMedia(css) });
 }
 
 export function invalidateTemplate(id) {
