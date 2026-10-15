@@ -13,6 +13,4 @@ npm start                          # http://localhost:3000
 ```
 
 Put your own XML files in `samples/` (git-ignored); the editor preview uses the first one.
-`demo-samples/` holds an anonymised sample used by the Docker image.
-
-Deployment (Docker + Caddy on a small VPS): see [deploy/README.md](deploy/README.md).
+`demo-samples/` holds an anonymised sample XML.
